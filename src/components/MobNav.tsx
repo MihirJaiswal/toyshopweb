@@ -30,7 +30,7 @@ function MobNav() {
               loading="lazy"
             />
           </SheetTrigger>
-          <SheetContent side="right" className="bg-[#CF102D] border-gray-700">
+          <SheetContent side="right" className="bg-[#b70e28] border-gray-700">
             <Link href="/" className="flex items-center gap-1">
               <Image
                 src={logo}
