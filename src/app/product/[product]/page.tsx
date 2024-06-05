@@ -8,7 +8,7 @@ import WhatsAppBtn from '@/components/whatsAppBtn';
 
 const ProductPage = () => {
   const pathname = usePathname();
-  const productName = pathname.split('/')[2]; // Extract product name from URL pathname
+  const productName = pathname.split('/')[2];
 
   const [product, setProduct] = useState(null);
   const [error, setError] = useState<string | null>(null);

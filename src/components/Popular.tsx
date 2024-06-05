@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion'; 
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import Shimmer from './shimmer';
@@ -8,13 +9,11 @@ interface Product {
   name: string;
   image: string;
   isPopular: boolean;
-  // Add other properties if necessary
 }
 
 interface Category {
   name: string;
   products: Product[];
-  // Add other properties if necessary
 }
 
 const Popular = () => {
@@ -57,7 +56,12 @@ const Popular = () => {
           Popular
         </h1>
       </div>
-      <div className="flex flex-wrap justify-center pb-12">
+      <motion.div
+        className="flex flex-wrap justify-center pb-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 1 }}
+      >
         {loading ? (
           <div className="m-4">
             <Shimmer />
@@ -65,9 +69,12 @@ const Popular = () => {
         ) : (
           displayedProducts.map((product, id) => (
             <Link href={`/product/${product.name}`} key={id}>
-              <div
+              <motion.div
                 key={id}
                 className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                initial={{ opacity: 0, y:40 }}
+                whileInView={{ opacity: 1, y:0 }}
+                transition={{ duration: 1 }}
               >
                 <div className="w-44 h-40 mb-4">
                   <img
@@ -79,19 +86,20 @@ const Popular = () => {
                 <div className="flex flex-col items-center">
                   <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           ))
         )}
-      </div>
+      </motion.div>
       {displayedProducts.length < popularProducts.length && (
         <div className="flex justify-center">
-          <button
+          <motion.button
             onClick={handleLoadMore}
             className="mb-12 px-6 py-2 text-white bg-[#B70E28] rounded-lg shadow-lg hover:bg-[#A00D24] transition-colors duration-300"
+            whileHover={{ scale: 1.05 }} // Scale up animation on hover
           >
             Load More
-          </button>
+          </motion.button>
         </div>
       )}
       <Separator />

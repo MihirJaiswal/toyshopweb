@@ -1,13 +1,14 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { delay, motion } from 'framer-motion'; 
 import { Separator } from '@/components/ui/separator';
 import Shimmer from './shimmer';
 
 interface CategoryItem {
   name: string;
   image: string;
-  products: any[]; // Assuming products are available in the API response
+  products: any[]; 
 }
 
 const Category = () => {
@@ -48,16 +49,21 @@ const Category = () => {
       <div className="py-12 text-center md:text-left">
         <h1 className="py-2 text-3xl text-black font-bold">Categories</h1>
         <div className='flex items-center justify-center'>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearchChange}
-          placeholder="Search categories..."
-          className="p-2 border border-gray-300 rounded-lg mb-8 text-black mt-4 max-w-78 md:max-w-lg w-full mx-auto"
-        />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearchChange}
+            placeholder="Search categories..."
+            className="p-2 border border-gray-300 rounded-lg mb-8 text-black mt-4 max-w-78 md:max-w-lg w-full mx-auto"
+          />
         </div>
       </div>
-      <div className="flex flex-wrap justify-center pb-12">
+      <motion.div
+        className="flex flex-wrap justify-center pb-12"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 1 }}
+      >
         {loading ? (
           <div className="m-4">
             <Shimmer />
@@ -65,8 +71,12 @@ const Category = () => {
         ) : (
           filteredCategories.map(({ name, image, products }, index) => (
             <Link href={`/${name.toLowerCase()}`} key={index}>
-              <div
+              <motion.div
                 className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                initial={{ opacity:0, y:40 }}
+                whileInView={{opacity:1, y:0 }} 
+                transition={{duration:1}}
+                key={index}
               >
                 <div className="w-44 h-40 mb-4">
                   <img
@@ -79,11 +89,11 @@ const Category = () => {
                   <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{name}</h1>
                   <p className="text-sm text-gray-500">{products.length} Products</p>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           ))
         )}
-      </div>
+      </motion.div>
       <Separator />
     </div>
   );

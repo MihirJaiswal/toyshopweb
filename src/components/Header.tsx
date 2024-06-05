@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 import Navbar from './Navbar'
 import MobNav from './MobNav'
-import SearchBar from './SearchBar'
 import logo from '../../public/LOGO.png'
 
 

@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import Shimmer from './shimmer';
@@ -59,17 +60,21 @@ const Toy = () => {
           What's in your mind?
         </h1>
       </div>
-      <div className="flex flex-wrap justify-center pb-12">
+      <motion.div
+        className="flex flex-wrap justify-center pb-12"
+        initial={{ opacity: 0, y:40 }}
+        whileInView={{ opacity: 1, y:0 }}
+        transition={{ delay: 0.4, duration: 1 }}
+      >
         {loading ? (
-          
-            <Shimmer />
-          
+          <Shimmer />
         ) : (
           shownProducts.map((product, id) => (
             <Link href={`/product/${product.name}`} key={id}>
-              <div
-                key={id}
+              <motion.div
                 className="flex flex-col items-center rounded-lg  p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+                key={id}
               >
                 <div className="w-44 h-40 mb-4">
                   <img
@@ -81,11 +86,11 @@ const Toy = () => {
                 <div className="flex flex-col items-center">
                   <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           ))
         )}
-      </div>
+      </motion.div>
       <Separator />
     </div>
   );

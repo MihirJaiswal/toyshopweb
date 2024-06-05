@@ -12,15 +12,14 @@ const AddToyForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-  
     const newToy = {
       name,
       image,
       description,
-      price: parseFloat(price), // Ensure price is parsed as a float
+      price: parseFloat(price), 
       isPopular,
       isShown,
-      categoryName: category // Use "categoryName" instead of "category"
+      categoryName: category 
     };
   
     try {
@@ -33,7 +32,6 @@ const AddToyForm = () => {
       if (response.ok) {
         const createdToy = await response.json();
         console.log('New toy created:', createdToy);
-        // Optionally, reset form fields or give user feedback
         setName('');
         setImage('');
         setDescription('');
