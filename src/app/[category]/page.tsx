@@ -5,6 +5,19 @@ import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+
+interface Product {
+  name: string;
+  image: string;
+}
+
+interface Category {
+  name: string;
+  products: Product[];
+}
+
+
+
 const CategoryPage = () => {
   const pathname = usePathname();
   const pathParts = pathname.split('/');
@@ -15,15 +28,15 @@ const CategoryPage = () => {
   const categoryName = decodeURIComponent(pathParts[1]);
   console.log('Category name:', categoryName);
 
-  const [categoryData, setCategoryData] = useState(null);
-  const [error, setError] = useState(null);
+  const [categoryData, setCategoryData] = useState<Category | null>(null);
+  const [error, setError] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
         const response = await fetch(`http://localhost:5000/api/categories`);
         if (response.ok) {
-          const data = await response.json();
+          const data: Category[] = await response.json();
           console.log('Fetched categories:', data);
 
           // Find the selected category by its name
@@ -40,7 +53,9 @@ const CategoryPage = () => {
         }
       } catch (error) {
         console.error('Error fetching category data:', error);
-        setError(error.message);
+        if(typeof error === "string"){
+          setError(error);
+        }
       }
     };
 

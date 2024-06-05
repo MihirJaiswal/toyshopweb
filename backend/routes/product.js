@@ -4,14 +4,20 @@ const Product = require('../models/Product');
 const Category = require('../models/Category'); // Import Category model
 
 // Get all products
-router.get('/', async (req, res) => {
+router.get('/:productName', async (req, res) => {
+  const productName = req.params.productName;
+
   try {
-    const products = await Product.find();
-    res.json(products);
+    const product = await Product.findOne({ name: productName });
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(product);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
 
 // Create a new product
 router.post('/', async (req, res) => {

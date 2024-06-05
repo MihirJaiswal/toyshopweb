@@ -1,12 +1,44 @@
-import React from 'react';
-import { categories } from '../../constant';
+'use client'
+import React, { useState, useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 
+interface Product {
+  name: string;
+  image: string;
+  isPopular: boolean;
+  // Add other properties if necessary
+}
+
+interface Category {
+  name: string;
+  products: Product[];
+  // Add other properties if necessary
+}
+
 const Popular = () => {
-  const popularProducts = categories.flatMap(category =>
-    category.products.filter(product => product.isPopular)
-  ).slice(0, 5); // Limit to 5 products
+  const [popularProducts, setPopularProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/categories');
+        if (response.ok) {
+          const categories: Category[] = await response.json();
+          const popularProducts = categories
+            .flatMap(category => category.products.filter(product => product.isPopular))
+            .slice(0, 5);
+          setPopularProducts(popularProducts);
+        } else {
+          throw new Error('Failed to fetch categories');
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <div className="container mx-auto">
@@ -20,7 +52,7 @@ const Popular = () => {
           <Link href={`/product/${product.name}`} key={id}>
             <div
               key={id}
-              className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300"
+              className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
             >
               <div className="w-44 h-40 mb-4">
                 <img
