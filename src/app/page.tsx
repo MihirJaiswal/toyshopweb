@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center">
       <Header/>
-      <div className="md:max-w-7xl mt-24 ">
+      <div className="md:max-w-7xl mt-18 md:mt-24">
        <HomePageSection/>
       <Toy/>
       <Category/>

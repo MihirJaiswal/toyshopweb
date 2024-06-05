@@ -1,37 +1,38 @@
+// components/Hero.js
+
 import React from 'react';
-import img from '../../public/heroimg2.png'
+import Link from 'next/link';
 import Image from 'next/image';
+import img from '../../public/bg.png'
 
-const HomePageSection = () => {
+const Hero = () => {
   return (
-    <section className="bg-white dark:bg-gray-900">
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black">Toy Sandook: Unlock your Treasure!</h1>
-          <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Open the Treasure of Fun, Excitement, and Learning. Order Now to Unlock Endless Adventures and Knowledge!</p>
-          <a href="#" className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#b70e28] hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-            Shop now
-            <svg className="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
-            </svg>
-          </a>
-          <a href="#" className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-            Contact Us
-          </a> 
+    <div className="relative overflow-hidden">
+      <div className="absolute"></div>
+      <div className="relative z-10 container mx-auto px-6 py-36 flex flex-col items-center md:items-start text-center md:text-left text-black border border-solid border-red-300">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
+          Welcome to ToySandook
+        </h1>
+        <div className='flex flex-col items-center '>
+        <p className="text-lg md:text-xl mb-8 text-gray-700">
+          Where imagination knows no bounds
+        </p>
+        <Link href="/shop">
+          <h3 className="px-8 py-3 max-w-48 bg-[#B70E28] text-white text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-yellow-300 transition-colors duration-300">
+            Shop Now
+          </h3>
+        </Link>
         </div>
-        <div className="lg:mt-0 lg:col-span-5 lg:flex my-12">
-          <Image
-          src={img}
-          alt="mockup"
-          width={700}
-          height={500}
-          className="w-full"
-          loading='lazy'
-          />
-        </div>                
       </div>
-    </section>
+      <Image
+        src={img}
+        alt="Toys"
+        className="absolute inset-0 w-full h-full object-cover opacity-100"
+        loading='lazy'
+        quality={100}
+      />
+    </div>
   );
-}
+};
 
-export default HomePageSection;
+export default Hero;

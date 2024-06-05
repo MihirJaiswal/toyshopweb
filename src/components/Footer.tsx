@@ -5,11 +5,16 @@ import Image from 'next/image';
 const Footer = () => {
   return (
     <footer className="bg-white rounded-lg shadow  m-4">
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <a href="" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-            <Image src={logo} className="w-24" alt="" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white pr-12">Toy-Sandook</span>
+      <div className="w-[99vw] max-w-screen-3xl mx-auto p-4 md:py-8">
+        <div className="sm:flex sm:items-center sm:justify-center">
+          <a href="" className="flex items-center justify-center ml-2 md:ml-0 mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+            <Image 
+            src={logo} 
+            className="w-6"
+            alt="logo"
+            width={500}
+            />
+            <span className="self-center text-lg md:text-2xl font-semibold whitespace-nowrap text-gray-900 pr-12">Toy-Sandook</span>
           </a>
           <ul className="flex flex-wrap items-center justify-around mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>

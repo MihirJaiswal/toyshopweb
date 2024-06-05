@@ -53,6 +53,10 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      backgroundImage: {
+        main: "linear-gradient(to bottom, #fee2e2, #fde9ee, #fcf1f7, #fcf8fd, #ffffff)",
+        nav:"linear-gradient(to bottom, #fecaca, #fed0d0, #fed6d6, #fedcdc, #fee2e2);"
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

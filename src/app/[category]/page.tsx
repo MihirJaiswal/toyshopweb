@@ -82,12 +82,12 @@ const CategoryPage = () => {
       <Header />
       <div className="container mx-auto mt-20">
         <div className="py-12 text-center">
-          <h1 className="pb-12 text-4xl text-black font-bold">{categoryName}</h1>
+          <h1 className="pb-12 text-4xl text-black font-bold">{categoryName.toUpperCase()}</h1>
           <div className="flex flex-wrap justify-center pb-12">
             {categoryData && categoryData.products.map((product, index) => (
               <Link href={`/product/${product.name}`} key={index}>
                 <div
-                  className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300"
+                  className="flex flex-col items-center bg-white border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300"
                 >
                   <div className="w-44 h-40 mb-4">
                     <img

@@ -93,7 +93,7 @@ const ProductPage = () => {
         <h1 className="py-12 text-5xl text-black font-bold text-center">{name}</h1>
         <div className="py-2 text-center flex flex-col md:flex-row items-center justify-around mb-20">
           <div className="flex justify-center">
-            <div className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4">
+            <div className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 m-4">
               <div className="w-44 h-40 mb-4">
                 <img
                   src={image}
@@ -103,13 +103,13 @@ const ProductPage = () => {
               </div>
               <div className="flex flex-col items-center">
                 <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{name}</h1>
-                <p className='font-bold'>₹{price}</p>
+                <p className='font-bold text-black'>₹{price}</p>
               </div>
             </div>
           </div>
           <div className='flex flex-col gap-6'>
             <div className='max-w-2xl text-center'>
-              <p className='text-2xl p-6'>{description}</p>
+              <p className='text-2xl p-6 text-gray-900'>{description}</p>
             </div>
             <div>
               <button className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>Order Now!</button>

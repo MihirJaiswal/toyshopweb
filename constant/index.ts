@@ -10,6 +10,11 @@ export const navigation = [
       title: "about",
       route: "/about",
     },
+    {
+      label: "2",
+      title: "contacts",
+      route: "/contact",
+    },
   ];
 
 

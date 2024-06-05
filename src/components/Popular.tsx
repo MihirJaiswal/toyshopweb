@@ -19,7 +19,9 @@ interface Category {
 
 const Popular = () => {
   const [popularProducts, setPopularProducts] = useState<Product[]>([]);
+  const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [productsToShow, setProductsToShow] = useState(5);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -28,9 +30,9 @@ const Popular = () => {
         if (response.ok) {
           const categories: Category[] = await response.json();
           const popularProducts = categories
-            .flatMap(category => category.products.filter(product => product.isPopular))
-            .slice(0, 5);
+            .flatMap(category => category.products.filter(product => product.isPopular));
           setPopularProducts(popularProducts);
+          setDisplayedProducts(popularProducts.slice(0, productsToShow));
         } else {
           throw new Error('Failed to fetch categories');
         }
@@ -42,28 +44,30 @@ const Popular = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, [productsToShow]);
+
+  const handleLoadMore = () => {
+    setProductsToShow(prevCount => prevCount + 5);
+  };
 
   return (
     <div className="container mx-auto">
       <div className="py-12 text-center md:text-left">
-        <h1 className="py-2 text-5xl text-black font-bold">
+        <h1 className="py-2 text-3xl text-black font-bold">
           Popular
         </h1>
       </div>
       <div className="flex flex-wrap justify-center pb-12">
         {loading ? (
-         
-            <div className="m-4">
-              <Shimmer />
-            </div>
-          
+          <div className="m-4">
+            <Shimmer />
+          </div>
         ) : (
-          popularProducts.map((product, id) => (
+          displayedProducts.map((product, id) => (
             <Link href={`/product/${product.name}`} key={id}>
               <div
                 key={id}
-                className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
                 <div className="w-44 h-40 mb-4">
                   <img
@@ -80,6 +84,16 @@ const Popular = () => {
           ))
         )}
       </div>
+      {displayedProducts.length < popularProducts.length && (
+        <div className="flex justify-center">
+          <button
+            onClick={handleLoadMore}
+            className="mb-12 px-6 py-2 text-white bg-[#B70E28] rounded-lg shadow-lg hover:bg-[#A00D24] transition-colors duration-300"
+          >
+            Load More
+          </button>
+        </div>
+      )}
       <Separator />
     </div>
   );

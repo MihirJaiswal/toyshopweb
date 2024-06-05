@@ -4,9 +4,11 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='flex flex-col md:flex-row justify-center '>
+    <div className='h-screen'>
+      <div className='flex flex-col md:flex-row justify-center'>
         <AddToyForm/>
         <AddCategoryForm/>
+    </div>
     </div>
   )
 }

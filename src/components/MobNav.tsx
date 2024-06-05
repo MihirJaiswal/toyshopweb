@@ -30,21 +30,21 @@ function MobNav() {
               loading="lazy"
             />
           </SheetTrigger>
-          <SheetContent side="right" className="bg-[#b70e28] border-gray-700">
+          <SheetContent side="right" className="bg-[#E3CAC9] border-gray-700">
             <Link href="/" className="flex items-center gap-1">
               <Image
                 src={logo}
                 width={48}
                 height={48}
                 alt="logo"
-                className="bg-white w-12"
+                className="w-12"
                 loading='lazy'
               />
               
             </Link>
             <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
               <SheetClose asChild>
-                <section className="flex h-full flex-col gap-6 pt-16 text-google-blue">
+                <section className="flex h-full flex-col gap-6 pt-16 text-red-600">
                   <div className="flex flex-1 flex-col gap-6">
                     {navigation.map((link) => {
                       const isActive = pathname === link.route;
@@ -54,7 +54,7 @@ function MobNav() {
                             href={link.route}
                             key={link.label}
                             className={cn('flex gap-4 items-center p-4 rounded-lg w-full max-w-60', {
-                              'bg-google-red text-white': isActive,
+                              'bg-red-red text-black font-bold': isActive,
                             })}
                           >
                             <p className="font-semibold text-[18px]">{link.title}</p>

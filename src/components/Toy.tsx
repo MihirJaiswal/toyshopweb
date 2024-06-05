@@ -55,7 +55,7 @@ const Toy = () => {
   return (
     <div className="container mx-auto">
       <div className="py-12 text-center md:text-left">
-        <h1 className="py-2 text-3xl text-black font-bold">
+        <h1 className="py-2 text-2xl text-black font-bold">
           What's in your mind?
         </h1>
       </div>
@@ -69,7 +69,7 @@ const Toy = () => {
             <Link href={`/product/${product.name}`} key={id}>
               <div
                 key={id}
-                className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="flex flex-col items-center rounded-lg  p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
                 <div className="w-44 h-40 mb-4">
                   <img
