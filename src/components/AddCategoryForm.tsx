@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-
+import DeleteCategory from '@/components/DeleteCategory'
+import { Separator } from './ui/separator';
 
 const AddCategoryForm = () => {
   const [name, setName] = useState('');
@@ -37,7 +38,7 @@ const AddCategoryForm = () => {
 
   return (
     <div className="mx-auto w-full max-w-md mt-8 p-6 bg-white rounded shadow-lg border border-solid border-gray-600">
-      <h2 className="text-2xl font-semibold mb-4">Add a New Category</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-black">Add a New Category</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="name">Name:</label>
@@ -46,7 +47,7 @@ const AddCategoryForm = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter name"
             required
           />
@@ -58,7 +59,7 @@ const AddCategoryForm = () => {
             type="text"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter image URL"
             required
           />
@@ -70,6 +71,12 @@ const AddCategoryForm = () => {
           Add Category
         </button>
       </form>
+      <div className='mt-12'>
+      <Separator/>
+      </div>
+      <div className='mt-2'>
+      <DeleteCategory/>
+      </div>
     </div>
   );
 };

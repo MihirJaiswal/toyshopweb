@@ -8,6 +8,7 @@ const page = () => {
       <div className='flex flex-col md:flex-row justify-center'>
         <AddToyForm/>
         <AddCategoryForm/>
+       
     </div>
     </div>
   )

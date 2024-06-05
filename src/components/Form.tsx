@@ -54,7 +54,7 @@ const AddToyForm = () => {
 
   return (
     <div className="w-full max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-lg border-solid border border-gray-400">
-      <h2 className="text-2xl font-semibold mb-4">Add a New Toy</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-black">Add a New Toy</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-bold mb-2" htmlFor="name">Name:</label>
@@ -63,7 +63,7 @@ const AddToyForm = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter name"
             required
           />
@@ -75,7 +75,7 @@ const AddToyForm = () => {
             type="text"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter image URL"
             required
           />
@@ -86,7 +86,7 @@ const AddToyForm = () => {
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter description"
             required
           />
@@ -98,7 +98,7 @@ const AddToyForm = () => {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter price"
             required
           />
@@ -132,7 +132,7 @@ const AddToyForm = () => {
             type="text"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
+            className="border border-gray-300 rounded px-3 py-2 w-full text-black"
             placeholder="Enter category ID"
             required
           />
