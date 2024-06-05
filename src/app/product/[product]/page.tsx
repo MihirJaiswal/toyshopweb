@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import WhatsAppBtn from '@/components/whatsAppBtn';
 
 
 const ProductPage = () => {
@@ -117,6 +118,7 @@ const ProductPage = () => {
         </div>
       </div>
       <Footer />
+      <WhatsAppBtn/>
     </div>
   );
 };

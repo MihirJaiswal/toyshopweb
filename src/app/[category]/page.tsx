@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Shimmer from '../../components/shimmer';
+import WhatsAppBtn from '@/components/whatsAppBtn';
 
 interface Product {
   name: string;
@@ -105,6 +106,7 @@ const CategoryPage = () => {
         </div>
       </div>
       <Footer />
+      <WhatsAppBtn/>
     </div>
   );
 }
