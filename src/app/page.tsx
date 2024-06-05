@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import HomePageSection from "@/components/Hero";
 import Popular from "@/components/Popular";
 import Toy from "@/components/Toy";
+import WhatsAppBtn from "@/components/whatsAppBtn";
 import Image from "next/image";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Popular/>
       </div>
       <Footer/>
+      <WhatsAppBtn/>
     </div>
   );
 }

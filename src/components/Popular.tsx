@@ -1,7 +1,8 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
+import Shimmer from './shimmer';
 
 interface Product {
   name: string;
@@ -18,6 +19,7 @@ interface Category {
 
 const Popular = () => {
   const [popularProducts, setPopularProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -34,6 +36,8 @@ const Popular = () => {
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -48,29 +52,37 @@ const Popular = () => {
         </h1>
       </div>
       <div className="flex flex-wrap justify-center pb-12">
-        {popularProducts.map((product, id) => (
-          <Link href={`/product/${product.name}`} key={id}>
-            <div
-              key={id}
-              className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
-            >
-              <div className="w-44 h-40 mb-4">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="object-contain w-full h-full rounded-lg"
-                />
-              </div>
-              <div className="flex flex-col items-center">
-                <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
-              </div>
+        {loading ? (
+         
+            <div className="m-4">
+              <Shimmer />
             </div>
-          </Link>
-        ))}
+          
+        ) : (
+          popularProducts.map((product, id) => (
+            <Link href={`/product/${product.name}`} key={id}>
+              <div
+                key={id}
+                className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                <div className="w-44 h-40 mb-4">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="object-contain w-full h-full rounded-lg"
+                  />
+                </div>
+                <div className="flex flex-col items-center">
+                  <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
       <Separator />
     </div>
   );
-}
+};
 
 export default Popular;

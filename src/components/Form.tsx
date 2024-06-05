@@ -10,18 +10,26 @@ const AddToyForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [category, setCategory] = useState('');
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    const newToy = { name, image, description, price, isPopular, isShown, category };
-
+  
+    const newToy = {
+      name,
+      image,
+      description,
+      price: parseFloat(price), // Ensure price is parsed as a float
+      isPopular,
+      isShown,
+      categoryName: category // Use "categoryName" instead of "category"
+    };
+  
     try {
       const response = await fetch('http://localhost:5000/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newToy),
       });
-
+  
       if (response.ok) {
         const createdToy = await response.json();
         console.log('New toy created:', createdToy);
@@ -41,9 +49,11 @@ const AddToyForm = () => {
       console.error('Error:', error);
     }
   };
+  
+  
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-lg">
+    <div className="w-full max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-lg border-solid border border-gray-400">
       <h2 className="text-2xl font-semibold mb-4">Add a New Toy</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -99,7 +109,7 @@ const AddToyForm = () => {
               type="checkbox"
               checked={isPopular}
               onChange={(e) => setIsPopular(e.target.checked)}
-              className="form-checkbox h-5 w-5 text-blue-500"
+              className="form-checkbox h-5 w-5 text-[#B70E28]"
             />
             <span className="ml-2">Popular</span>
           </label>
@@ -110,7 +120,7 @@ const AddToyForm = () => {
               type="checkbox"
               checked={isShown}
               onChange={(e) => setIsShown(e.target.checked)}
-              className="form-checkbox h-5 w-5 text-blue-500"
+              className="form-checkbox h-5 w-5 text-[#B70E28]"
             />
             <span className="ml-2">Shown</span>
           </label>
@@ -129,7 +139,7 @@ const AddToyForm = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          className="bg-[#B70E28] hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
         >
           Add Toy
         </button>

@@ -1,14 +1,17 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import Shimmer from './shimmer';
 
-interface Category{
+interface Category {
   name: string;
   image: string;
 }
+
 const Category = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,17 +20,17 @@ const Category = () => {
         if (response.ok) {
           const data = await response.json();
           setCategories(data);
-          console.log(data)
         } else {
           throw new Error('Failed to fetch categories');
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-    
   }, []);
 
   return (
@@ -38,29 +41,36 @@ const Category = () => {
         </h1>
       </div>
       <div className="flex flex-wrap justify-center pb-12">
-        {categories.map(({ name, image }, index) => (
-          <Link href={`/${name.toLowerCase()}`} key={index}>
-            <div
-              className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
-            >
-              <div className="w-44 h-40 mb-4">
-                <img
-                  src={image}
-                  alt={name}
-                  className="object-contain w-full h-full rounded-lg"
-                />
-              </div>
-              <div className="flex flex-col items-center">
-                <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{name}</h1>
-                {/*  <p className="text-gray-600">{category.products.length} items available</p> */}
-              </div>
+        {loading ? (
+          
+            <div className="m-4">
+              <Shimmer />
             </div>
-          </Link>
-        ))}
+          
+        ) : (
+          categories.map(({ name, image }, index) => (
+            <Link href={`/${name.toLowerCase()}`} key={index}>
+              <div
+                className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                <div className="w-44 h-40 mb-4">
+                  <img
+                    src={image}
+                    alt={name}
+                    className="object-contain w-full h-full rounded-lg"
+                  />
+                </div>
+                <div className="flex flex-col items-center">
+                  <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{name}</h1>
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
       </div>
-      <Separator/>
+      <Separator />
     </div>
   );
-}
+};
 
 export default Category;
