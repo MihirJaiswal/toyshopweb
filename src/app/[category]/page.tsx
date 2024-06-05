@@ -53,7 +53,10 @@ const CategoryPage = () => {
   }, [categoryName]);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return(
+      <div className='flex justify-center items-center h-screen'><h1 className='text-black md:text-4xl font-bold'>
+        Error: {error.message}</h1></div>
+    );
   }
 
   if (loading) {

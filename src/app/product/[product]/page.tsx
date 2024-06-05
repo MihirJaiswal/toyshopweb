@@ -81,7 +81,10 @@ const ProductPage = () => {
   }
 
   if (!product) {
-    return <div>No product found</div>;
+    return(
+      <div className='flex h-screen justify-center items-center'><h1 className='text-black text-2xl md:text-4xl font-bold'>
+        No Products Found</h1></div>
+    );
   }
 
   const { name, image, price, description } = product;

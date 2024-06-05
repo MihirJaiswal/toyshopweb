@@ -28,7 +28,7 @@ const DeleteCategory = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-semibold mb-12 text-black">Delete Category</h1>   
-      <div className="flex mb-12">
+      <div className="flex flex-col gap-4 md:flex-row mb-12">
         <input 
           type="text" 
           placeholder="Category Name" 
