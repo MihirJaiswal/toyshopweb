@@ -13,8 +13,8 @@ const Category = () => {
         </h1>
       </div>
       <div className="flex flex-wrap justify-center pb-12">
-        {categories.map((category, index) => (
-          <Link href={`/${category.name.toLowerCase()}`} key={index}>
+        {categories.map((category, id) => (
+          <Link href={`/${category.name.toLowerCase()}`} key={id}>
             <div
               className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
             >

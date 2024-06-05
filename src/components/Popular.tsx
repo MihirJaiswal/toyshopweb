@@ -16,10 +16,10 @@ const Popular = () => {
         </h1>
       </div>
       <div className="flex flex-wrap justify-center pb-12">
-        {popularProducts.map((product, index) => (
-          <Link href={`/product/${product.name}`} key={index}>
+        {popularProducts.map((product, id) => (
+          <Link href={`/product/${product.name}`} key={id}>
             <div
-              key={index}
+              key={id}
               className="flex flex-col items-center border border-solid border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300"
             >
               <div className="w-44 h-40 mb-4">

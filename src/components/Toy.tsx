@@ -3,11 +3,42 @@ import Link from 'next/link';
 import { categories } from '../../constant';
 import { Separator } from '@/components/ui/separator';
 
-const Toy = () => {
+// Define the interface for a product
+interface ProductProps {
+  id: string;
+  image: string;
+  name: string;
+  isPopular: boolean;
+  isShown: boolean;
+  price: number;
+  description?: string;
+}
+
+// Define the interface for a category
+interface CategoryProps {
+  id: string;
+  image: string;
+  name: string;
+  itemsAvailable: number;
+  products: ProductProps[];
+}
+
+const Toy: React.FC = () => {
   // Flatten all products arrays into a single array
-  const allProducts = categories.flatMap(category => category.products);
-  // Get the first 5 items from the combined array
-  const fiveProducts = allProducts.filter(product => product.isShown).slice(0, 5);
+  const allProducts: ProductProps[] = categories.flatMap(category => category.products);
+  // Shuffle the array of products
+  const shuffledProducts = shuffleArray(allProducts);
+  // Get the first 5 items from the shuffled array
+  const fiveRandomProducts = shuffledProducts.filter(product => product.isShown).slice(0, 5);
+
+  // Function to shuffle the array
+  function shuffleArray<T>(array: T[]): T[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
 
   return (
     <div className='container mx-auto px-4 py-8'>
@@ -17,8 +48,8 @@ const Toy = () => {
         </h1>
       </div>
       <div className='flex flex-wrap justify-center'>
-        {fiveProducts.map((product, index) => (
-          <Link href={`/product/${product.name}`} key={index}>
+        {fiveRandomProducts.map((product, index) => (
+          <Link href={`/product/${product.name}`} key={product.id}>
             <div className='flex flex-col items-center justify-center p-6 cursor-pointer transition-transform transform hover:scale-105'>
               <div className='w-32 h-32'>
                 <img
