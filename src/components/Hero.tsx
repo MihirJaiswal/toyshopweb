@@ -18,7 +18,7 @@ const Hero = () => {
           Where imagination knows no bounds
         </p>
         <Link href="/shop">
-          <h3 className="px-8 py-3 max-w-48 bg-[#B70E28] text-white text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-yellow-300 transition-colors duration-300">
+          <h3 className="px-8 py-3 max-w-48 bg-[#B70E28] text-white text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-red-800 transition-colors duration-300">
             Shop Now
           </h3>
         </Link>
