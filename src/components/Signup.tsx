@@ -19,7 +19,7 @@ export default function SignUp() {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log('Login response:', data);
+      console.log(data);
       router.push('/admin');
     } else {
       const errorData = await res.json();
