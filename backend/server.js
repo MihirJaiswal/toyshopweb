@@ -14,11 +14,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
-
-
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
 app.use(session({
   secret: 'secret', // Change this to a secure secret for production
   resave: false,

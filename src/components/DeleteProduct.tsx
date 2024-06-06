@@ -29,7 +29,7 @@ const DeleteProduct = () => {
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
           placeholder="Product Name"
-          className="p-2 border rounded mb-4"
+          className="p-2 border rounded mb-4 text-black"
           required
         />
         <button type="submit" className="bg-[#B70E28] text-white p-2 rounded">

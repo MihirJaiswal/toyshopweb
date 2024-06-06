@@ -107,9 +107,9 @@ const AddToyForm = () => {
               type="checkbox"
               checked={isPopular}
               onChange={(e) => setIsPopular(e.target.checked)}
-              className="form-checkbox h-5 w-5 text-[#B70E28]"
+              className="form-checkbox h-5 w-5 text-black"
             />
-            <span className="ml-2">Popular</span>
+            <span className="ml-2 text-black">Popular</span>
           </label>
         </div>
         <div className="mb-4">
@@ -118,9 +118,9 @@ const AddToyForm = () => {
               type="checkbox"
               checked={isShown}
               onChange={(e) => setIsShown(e.target.checked)}
-              className="form-checkbox h-5 w-5 text-[#B70E28]"
+              className="form-checkbox h-5 w-5  text-black"
             />
-            <span className="ml-2">Shown</span>
+            <span className="ml-2 text-black">Shown</span>
           </label>
         </div>
         <div className="mb-4">

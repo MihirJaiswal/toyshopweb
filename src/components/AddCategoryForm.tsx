@@ -41,7 +41,7 @@ const AddCategoryForm = () => {
       <h2 className="text-2xl font-semibold mb-4 text-black">Add a New Category</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="name">Name:</label>
+          <label className="block text-sm font-bold mb-2 text-black" htmlFor="name">Name:</label>
           <input
             id="name"
             type="text"
@@ -53,7 +53,7 @@ const AddCategoryForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="image">Image URL:</label>
+          <label className="block text-sm font-bold mb-2 text-black" htmlFor="image">Image URL:</label>
           <input
             id="image"
             type="text"

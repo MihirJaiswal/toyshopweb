@@ -91,7 +91,7 @@ const UpdateProduct = () => {
           placeholder="Product Price"
           className="p-2 border rounded text-black"
         />
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-2 text-black">
           <input
             type="checkbox"
             name="isPopular"
@@ -100,7 +100,7 @@ const UpdateProduct = () => {
           />
           <span>Popular</span>
         </label>
-        <label className="flex items-center space-x-2">
+        <label className="flex items-center space-x-2 text-black">
           <input
             type="checkbox"
             name="isShown"
