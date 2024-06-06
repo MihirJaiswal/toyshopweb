@@ -77,7 +77,7 @@ const Page = () => {
     <div className='h-full'>
       <div className='flex items-center justify-center'>
       <h1 className='text-3xl font-bold text-black'>Admin Dashboard</h1>
-      <button onClick={handleLogout} className='bg-[#B70E28] p-4 m-2'>Logout</button>
+      <button onClick={handleLogout} className='bg-[#B70E28] px-4 py-2  m-2 rounded-2xl'>Logout</button>
       </div>
       <div className='flex flex-col md:flex-row justify-center mb-12 p-6'>
         <AddToyForm />

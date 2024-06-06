@@ -54,8 +54,8 @@ const config = {
         },
       },
       backgroundImage: {
-        main: "linear-gradient(to bottom, #fee2e2, #fde9ee, #fcf1f7, #fcf8fd, #ffffff)",
-        nav:"linear-gradient(to bottom, #fecaca, #fed0d0, #fed6d6, #fedcdc, #fee2e2);"
+        main:"linear-gradient(to bottom, #fbcccc, #fcd3d6, #fcdbdf, #fde2e8, #fdeaef);",
+        nav:"linear-gradient(to bottom, #fdeaef, #feeced, #feeeeb, #fef1eb, #fcf3ec);"
       },
       borderRadius: {
         lg: "var(--radius)",

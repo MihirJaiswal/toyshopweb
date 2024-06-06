@@ -29,7 +29,7 @@ const Toy = () => {
         if (response.ok) {
           const categories: Category[] = await response.json();
           const allProducts = categories.flatMap(category => category.products);
-          const shuffledProducts = shuffleArray(allProducts).slice(0, 5);
+          const shuffledProducts = shuffleArray(allProducts).slice(0, 4);
           setShownProducts(shuffledProducts);
         } else {
           throw new Error('Failed to fetch categories');
@@ -54,16 +54,16 @@ const Toy = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <div className="py-12 text-center md:text-left">
-        <h1 className="py-2 text-2xl text-black font-bold">
+        <h1 className="py-2 text-3xl text-black font-bold">
           What's in your mind?
         </h1>
       </div>
       <motion.div
         className="flex flex-wrap justify-center pb-12"
-        initial={{ opacity: 0, y:40 }}
-        whileInView={{ opacity: 1, y:0 }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 1 }}
       >
         {loading ? (
@@ -72,11 +72,11 @@ const Toy = () => {
           shownProducts.map((product, id) => (
             <Link href={`/product/${product.name}`} key={id}>
               <motion.div
-                className="flex flex-col items-center rounded-lg  p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="flex flex-col items-center bg-white shadow-lg rounded-lg p-6 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 key={id}
               >
-                <div className="w-44 h-40 mb-4">
+                <div className="w-48 h-48 mb-4">
                   <img
                     src={product.image}
                     alt={product.name}

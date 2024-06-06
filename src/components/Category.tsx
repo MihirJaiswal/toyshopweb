@@ -45,7 +45,7 @@ const Category = () => {
   );
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto" id='category'>
       <div className="py-12 text-center md:text-left">
         <h1 className="py-2 text-3xl text-black font-bold">Categories</h1>
         <div className='flex items-center justify-center'>
@@ -72,8 +72,8 @@ const Category = () => {
           filteredCategories.map(({ name, image, products }, index) => (
             <Link href={`/${name.toLowerCase()}`} key={index}>
               <motion.div
-                className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
-                initial={{ opacity:0, y:40 }}
+                className="flex flex-col items-center rounded-lg p-4 m-4 bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-10"
+                initial={{ opacity:0, y:50 }}
                 whileInView={{opacity:1, y:0 }} 
                 transition={{duration:1}}
                 key={index}

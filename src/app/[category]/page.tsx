@@ -97,7 +97,12 @@ const CategoryPage = () => {
       <Header />
       <div className="container mx-auto mt-20">
         <div className="py-12 text-center">
-          <h1 className="pb-12 text-4xl text-black font-bold">{categoryName.toUpperCase()}</h1>
+          <div className="relative inline-block mb-12">
+            <span className="text-2xl md:text-3xl font-bold text-black">
+            {categoryName.toUpperCase()}
+            </span>
+            <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-600 rounded-full"></span>
+          </div>
           <div>
           <input
             type="text"

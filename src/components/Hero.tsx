@@ -14,7 +14,7 @@ const Hero = () => {
       transition={{ duration: 1 }} 
     >
       <div className="absolute"></div>
-      <div className="relative z-10 container mx-auto px-6 py-36 flex flex-col items-center md:items-start text-center md:text-left text-black border border-solid border-red-300">
+      <div className="relative z-10 container mx-auto px-6 py-36 flex flex-col items-center md:items-start text-center md:text-left text-black border border-solid border-white">
         <motion.h1
           className="text-4xl md:text-6xl font-bold leading-tight mb-4"
           initial={{ opacity: 0, y: -20 }} 
@@ -32,7 +32,7 @@ const Hero = () => {
           <p className="text-lg md:text-xl mb-8 text-gray-700">
             Where imagination knows no bounds
           </p>
-          <Link href="/shop">
+          <a href="#category">
             <motion.h3
               className="px-8 py-3 max-w-48 bg-[#B70E28] text-white text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-red-800 transition-colors duration-300"
               whileHover={{ scale: 1.05 }} 
@@ -40,7 +40,7 @@ const Hero = () => {
             >
               Shop Now
             </motion.h3>
-          </Link>
+          </a>
         </motion.div>
       </div>
       <Image
