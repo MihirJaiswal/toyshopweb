@@ -15,10 +15,12 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(session({
-  secret: 'secret', // Change this to a secure secret for production
+  secret: process.env.SESSION_SECRET, // Use environment variable or default secret
   resave: false,
   saveUninitialized: true,
 }));
+
+let isAuthenticated = false;
 
 // Authentication middleware
 const requireAuth = (req, res, next) => {
@@ -30,25 +32,24 @@ const requireAuth = (req, res, next) => {
 };
 
 app.post('/api/login', (req, res) => {
-    console.log('Login request received:', req.body); // Log request body
-    const { username, password } = req.body;
-    if (username === 'admin' && password === 'password123') {
-      isAuthenticated = true;
-      console.log('Authentication successful');
-      res.status(200).json({ message: 'Login successful' });
-    } else {
-      isAuthenticated = false;
-      console.log('Authentication failed');
-      res.status(401).json({ message: 'Unauthorized' });
-    }
-  });
-
+  console.log('Login request received:', req.body); // Log request body
+  const { username, password } = req.body;
+  if (username === process.env.USERNAME && password === process.env.PASSWORD) {
+    isAuthenticated = true;
+    console.log('Authentication successful');
+    res.status(200).json({ message: 'Login successful' });
+  } else {
+    isAuthenticated = false;
+    console.log('Authentication failed');
+    res.status(401).json({ message: 'Unauthorized' });
+  }
+});
 
 // Check Auth Endpoint
 app.get('/api/check-auth', (req, res) => {
-    // or false based on your logi  
-    // Respond with authentication status
-    res.json({ authenticated: isAuthenticated });
+  // Respond with authentication status
+  res.json({ authenticated: isAuthenticated });
+
 });
 
 // Redirect Unauthorized Access to Signup
@@ -62,30 +63,23 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/api/logout', (req, res) => {
-    // Logic to clear the session or revoke the token
-    console.log('Session expired, logging out...');
-    res.json({ message: 'Session expired' });
-    isAuthenticated = false;
-  });
-  
+  // Logic to clear the session or revoke the token
+  console.log('Session expired, logging out...');
+  req.session.isAuthenticated = false; // Clear isAuthenticated in session
+  res.json({ message: 'Session expired' });
+  isAuthenticated = false;
+});
 
 // Routes
 app.get('/', (req, res) => res.send('Toy Store API'));
-app.use('/api/categories', categoryRoutes);
-app.use('/api/products', productRoutes);
-
-
-// Routes
-app.get('/', (req, res) => res.send('Toy Store API'));
-
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 
 // Connect to MongoDB
 const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI)
-.then(() => console.log('MongoDB connected')) // Success message
-.catch(err => console.error('MongoDB connection error:', err)); // Error message
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
