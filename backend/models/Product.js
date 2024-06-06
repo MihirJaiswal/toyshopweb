@@ -8,7 +8,7 @@ const ProductSchema = new Schema({
     price: Number,
     isPopular: Boolean,
     isShown: Boolean,
-    categoryName: { type: String, required: true } // Store category name directly
+    categoryName: { type: String, required: true }
   });  
 
 module.exports = mongoose.model('Product', ProductSchema);

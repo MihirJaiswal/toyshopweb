@@ -15,14 +15,13 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(session({
-  secret: process.env.SESSION_SECRET, // Use environment variable or default secret
+  secret: process.env.SESSION_SECRET, 
   resave: false,
   saveUninitialized: true,
 }));
 
 let isAuthenticated = false;
 
-// Authentication middleware
 const requireAuth = (req, res, next) => {
   if (req.session.isAuthenticated) {
     next();
@@ -32,7 +31,7 @@ const requireAuth = (req, res, next) => {
 };
 
 app.post('/api/login', (req, res) => {
-  console.log('Login request received:', req.body); // Log request body
+  console.log('Login request received:', req.body); 
   const { username, password } = req.body;
   if (username === process.env.USERNAME && password === process.env.PASSWORD) {
     isAuthenticated = true;
@@ -45,41 +44,32 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-// Check Auth Endpoint
 app.get('/api/check-auth', (req, res) => {
-  // Respond with authentication status
   res.json({ authenticated: isAuthenticated });
-
 });
 
-// Redirect Unauthorized Access to Signup
 app.get('/admin', requireAuth, (req, res) => {
   res.send('Welcome to the admin page');
 });
 
-// Render the Signup Page
 app.get('/signup', (req, res) => {
   res.send('Sign up page');
 });
 
 app.post('/api/logout', (req, res) => {
-  // Logic to clear the session or revoke the token
   console.log('Session expired, logging out...');
-  req.session.isAuthenticated = false; // Clear isAuthenticated in session
+  req.session.isAuthenticated = false; 
   res.json({ message: 'Session expired' });
   isAuthenticated = false;
 });
 
-// Routes
 app.get('/', (req, res) => res.send('Toy Store API'));
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 
-// Connect to MongoDB
 const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

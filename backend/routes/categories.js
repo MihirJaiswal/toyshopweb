@@ -1,10 +1,8 @@
-// routes/categories.js
 const express = require('express');
 const router = express.Router();
 const Category = require('../models/Category');
 const Product = require('../models/Product');
 
-// Get all categories
 router.get('/', async (req, res) => {
   try {
     const categories = await Category.find().populate('products');
@@ -14,12 +12,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create a new category
+
 router.post('/', async (req, res) => {
   const { name, image } = req.body;
 
   try {
-    // Check if category name already exists
     const existingCategory = await Category.findOne({ name: name });
     if (existingCategory) {
       return res.status(400).json({ message: 'Category name already exists' });
