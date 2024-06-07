@@ -1,5 +1,7 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DeleteCategory = () => {
   const [deleteName, setDeleteName] = useState('');
@@ -17,18 +19,40 @@ const DeleteCategory = () => {
       }
 
       setMessage(`Category ${deleteName} deleted successfully.`);
+      toast.success(`Category ${deleteName} deleted successfully.`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setDeleteName('');
-    } catch (error) {
-      if(error === 'string'){
-        setMessage(`Error: ${error}`);
+    } catch (error: unknown) {
+      let errorMessage = 'An unknown error occurred';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
       }
+      setMessage(`Error: ${errorMessage}`);
+      toast.error(`Error: ${errorMessage}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-12 text-black">Delete Category</h1>   
-      <div className="flex flex-col gap-4 md:flex-row mb-12">
+      <h1 className="text-2xl font-semibold mb-4 text-black">Delete Category</h1>   
+      <div className="flex flex-col gap-4 md:flex-row mb-4">
         <input 
           type="text" 
           placeholder="Category Name" 

@@ -1,12 +1,13 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
-import DeleteCategory from '@/components/DeleteCategory'
+import DeleteCategory from '@/components/DeleteCategory';
 import { Separator } from './ui/separator';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddCategoryForm = () => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
-  
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -28,11 +29,38 @@ const AddCategoryForm = () => {
         // Optionally, reset form fields
         setName('');
         setImage('');
+        toast.success('Category added successfully!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } else {
         const errorText = await response.text();
+        toast.error(`Error: ${errorText}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      toast.error('An error occurred. Please try again.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -72,10 +100,10 @@ const AddCategoryForm = () => {
         </button>
       </form>
       <div className='mt-12'>
-      <Separator/>
+        <Separator/>
       </div>
       <div className='mt-2'>
-      <DeleteCategory/>
+        <DeleteCategory/>
       </div>
     </div>
   );

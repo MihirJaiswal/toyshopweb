@@ -1,5 +1,7 @@
 'use client'
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DeleteProduct = () => {
   const [productName, setProductName] = useState('');
@@ -9,13 +11,15 @@ const DeleteProduct = () => {
     try {
       const response = await fetch(`http://localhost:5000/api/products/${productName}`, { method: 'DELETE' });
       if (response.ok) {
-        alert('Product deleted successfully');
+        toast.success('Product deleted successfully');
         setProductName('');
       } else {
         console.error('Error deleting product:', await response.json());
+        toast.error('Failed to delete product. Please try again.');
       }
     } catch (error) {
       console.error('Error deleting product:', error);
+      toast.error('Failed to delete product. Please try again.');
     }
   };
 

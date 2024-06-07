@@ -1,12 +1,15 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function SignUp() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -20,11 +23,28 @@ export default function SignUp() {
     if (res.ok) {
       const data = await res.json();
       console.log(data);
+      toast.success('Sign in successful!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       router.push('/admin');
     } else {
       const errorData = await res.json();
       console.error('Login error:', errorData);
-      alert('Invalid credentials');
+      toast.error('Invalid credentials', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   
@@ -58,26 +78,46 @@ export default function SignUp() {
 
   return (
     <div className='h-screen flex flex-col items-center justify-center'>
-       <div className='container w-full max-w-96 bg-white flex flex-col items-center justify-center p-12 border border-solid  border-gray-700 rounded-2xl'>
-       <h1 className="text-3xl font-bold mb-4 text-black">Sign Up</h1>
-       <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-4">
-      <input
-        type="text"
-        placeholder="Username"
-        className="border border-gray-300 rounded-md px-3 py-2 mb-2 text-black"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        className="border border-gray-300 rounded-md px-3 py-2 mb-2 text-black"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit" className="bg-[#B70E28] text-white px-4 py-2 rounded-md mt-8">Sign Up</button>
-    </form>
-       </div>
+      <div className='w-full max-w-md bg-white shadow-lg rounded-lg p-8'>
+        <h1 className="text-4xl font-bold mb-8 text-gray-800">Sign Up</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <div className="mt-1 relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Enter your password"
+                className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 px-3 flex items-center text-sm text-gray-600"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+          </div>
+          <button type="submit" className="w-full bg-[#B70E28] text-white py-2 rounded-md hover:bg-red-700 transition duration-300">
+            Sign Up
+          </button>
+        </form>
+      </div>
+      <ToastContainer />
     </div>
   );
 }

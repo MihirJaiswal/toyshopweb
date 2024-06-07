@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import DeleteProduct from '@/components/DeleteProduct'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import DeleteProduct from '@/components/DeleteProduct';
 import { Separator } from './ui/separator';
 
 const UpdateProduct = () => {
@@ -28,7 +30,7 @@ const UpdateProduct = () => {
         body: JSON.stringify(updateForm),
       });
       if (response.ok) {
-        alert('Product updated successfully');
+        toast.success('Product updated successfully');
         setUpdateForm({
           originalName: '',
           name: '',
@@ -41,9 +43,11 @@ const UpdateProduct = () => {
         });
       } else {
         console.error('Error updating product:', await response.json());
+        toast.error('Failed to update product. Please try again.');
       }
     } catch (error) {
       console.error('Error updating product:', error);
+      toast.error('Failed to update product. Please try again.');
     }
   };
 

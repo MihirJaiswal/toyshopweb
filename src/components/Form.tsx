@@ -1,5 +1,7 @@
 'use client'
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddToyForm = () => {
   const [name, setName] = useState('');
@@ -10,28 +12,37 @@ const AddToyForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [category, setCategory] = useState('');
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     const newToy = {
       name,
       image,
       description,
-      price: parseFloat(price), 
+      price: parseFloat(price),
       isPopular,
       isShown,
-      categoryName: category 
+      categoryName: category
     };
-  
+
     try {
       const response = await fetch('http://localhost:5000/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newToy),
       });
-  
+
       if (response.ok) {
         const createdToy = await response.json();
         console.log('New toy created:', createdToy);
+        toast.success('Toy added successfully!', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setName('');
         setImage('');
         setDescription('');
@@ -42,13 +53,29 @@ const AddToyForm = () => {
       } else {
         const errorText = await response.text();
         console.error('Error creating toy:', errorText);
+        toast.error(errorText, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
       console.error('Error:', error);
+      toast.error('Failed to add toy. Please try again.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
-  
-  
 
   return (
     <div className="w-full max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-lg border-solid border border-gray-400">
