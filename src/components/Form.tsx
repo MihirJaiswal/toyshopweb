@@ -34,7 +34,7 @@ const AddToyForm = () => {
       if (response.ok) {
         const createdToy = await response.json();
         console.log('New toy created:', createdToy);
-        toast.success('Toy added successfully!', {
+        toast.success('Item added successfully!', {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -166,7 +166,7 @@ const AddToyForm = () => {
           type="submit"
           className="bg-[#B70E28] hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
         >
-          Add Toy
+          Add Item
         </button>
       </form>
     </div>
