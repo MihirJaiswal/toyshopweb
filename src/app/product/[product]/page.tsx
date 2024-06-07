@@ -97,7 +97,7 @@ const ProductPage = () => {
       </div>
         <div className="flex flex-col md:flex-row items-center justify-around mb-20">
           <div className="flex justify-center mb-8 md:mb-0">
-            <div className="flex flex-col items-center bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 p-6">
+            <div className="flex flex-col items-center bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-gray-100 p-6">
               <div className="w-64 h-64 mb-4">
                 <img
                   src={image}
@@ -112,7 +112,7 @@ const ProductPage = () => {
           </div>
           <div>
           <div className="flex flex-col items-center gap-6 max-w-2xl md:text-left text-center">
-            <div className='h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 p-12'>
+            <div className='h-full w-full bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-gray-100 p-12'>
             <div>
             <p className="text-xl md:text-2xl text-gray-900 ">{description}</p>
             </div>

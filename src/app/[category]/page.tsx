@@ -12,6 +12,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 interface Product {
   name: string;
   image: string;
+  price: number;
 }
 
 interface Category {
@@ -93,7 +94,6 @@ const CategoryPage = () => {
       </div>
     );
   }
-
   return (
     <div>
       <Header />
@@ -131,6 +131,7 @@ const CategoryPage = () => {
                     </div>
                     <div className="flex flex-col items-center">
                       <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
+                      <p className="text-gray-900 font-semibold">₹{product.price}</p>
                     </div>
                   </div>
                 </Link>
