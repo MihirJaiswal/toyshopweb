@@ -57,11 +57,11 @@ const Toy = () => {
     <div className="container mx-auto px-4">
       <div className="py-12 text-center md:text-left">
         <h1 className="py-2 text-3xl text-black font-bold">
-          What's in your mind?
+          Featured Products
         </h1>
       </div>
       <motion.div
-        className="flex flex-wrap justify-center pb-12"
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 justify-center pb-12"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 1 }}
@@ -72,11 +72,11 @@ const Toy = () => {
           shownProducts.map((product, id) => (
             <Link href={`/product/${product.name}`} key={id}>
               <motion.div
-                className="flex flex-col items-center bg-white shadow-lg rounded-lg p-6 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="flex flex-col items-center bg-white shadow-lg rounded-lg p-6 md:m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 key={id}
               >
-                <div className="w-48 h-48 mb-4">
+                <div className="w-20 h-20  md:w-48 md:h-48 mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -84,7 +84,7 @@ const Toy = () => {
                   />
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
+                  <h1 className="md:text-xl text-sm font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
                 </div>
               </motion.div>
             </Link>

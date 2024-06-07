@@ -1,8 +1,8 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { navigation } from '../../constant';
+import { FaHome } from 'react-icons/fa'; // Import the home icon
 
 function Navbar() {
   const pathname = usePathname();
@@ -32,7 +32,11 @@ function Navbar() {
                 item.route === pathname ? 'z-2 lg:text-black' : 'lg:text-n-1/50'
               } lg:leading-5 lg:hover:text-n-1 xl:px-12`}
             >
-              {item.title}
+              {item.route === '/' ? (
+                <FaHome className="text-xl text-[#B70E28]" /> // Show home icon for home path
+              ) : (
+                item.title
+              )}
             </a>
           ))}
         </div>

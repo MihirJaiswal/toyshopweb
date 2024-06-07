@@ -120,7 +120,7 @@ const ProductPage = () => {
             <Separator/>
             </div>
             <div className='flex flex-col '>
-            <p className='text-gray-800 font-medium text-xl'>M.R.P.: ₹{price}</p>
+            <p className='text-gray-800 font-medium text-xl'>M.R.P.: <span className='text-black font-bold'>₹{price}</span></p>
             <span className='font-light text-gray-700 text-sm'>Inclusive of all taxes</span>
             </div>
             </div>

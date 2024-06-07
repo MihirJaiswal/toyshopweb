@@ -20,7 +20,7 @@ const Popular = () => {
   const [popularProducts, setPopularProducts] = useState<Product[]>([]);
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [productsToShow, setProductsToShow] = useState(5);
+  const [productsToShow, setProductsToShow] = useState(4);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -46,7 +46,7 @@ const Popular = () => {
   }, [productsToShow]);
 
   const handleLoadMore = () => {
-    setProductsToShow(prevCount => prevCount + 5);
+    setProductsToShow(prevCount => prevCount + 4);
   };
 
   return (
@@ -57,7 +57,7 @@ const Popular = () => {
         </h1>
       </div>
       <motion.div
-        className="flex flex-wrap justify-center pb-12"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-center pb-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 1 }}
@@ -71,12 +71,12 @@ const Popular = () => {
             <Link href={`/product/${product.name}`} key={id}>
               <motion.div
                 key={id}
-                className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
+                className="flex flex-col items-center border border-solid bg-white border-black-500 rounded-lg shadow-lg p-4 md:m-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
                 initial={{ opacity: 0, y:40 }}
                 whileInView={{ opacity: 1, y:0 }}
                 transition={{ duration: 1 }}
               >
-                <div className="w-44 h-40 mb-4">
+                <div className="md:w-44 md:h-40 w-20 h-20 mb-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -84,7 +84,7 @@ const Popular = () => {
                   />
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
+                  <h1 className="md:text-xl text-sm font-semibold mb-2 text-[#B70E28]">{product.name}</h1>
                 </div>
               </motion.div>
             </Link>
@@ -96,7 +96,7 @@ const Popular = () => {
           <motion.button
             onClick={handleLoadMore}
             className="mb-12 px-6 py-2 text-white bg-[#B70E28] rounded-lg shadow-lg hover:bg-[#A00D24] transition-colors duration-300"
-            whileHover={{ scale: 1.05 }} // Scale up animation on hover
+            whileHover={{ scale: 1.05 }} 
           >
             Load More
           </motion.button>

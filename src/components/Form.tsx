@@ -147,7 +147,7 @@ const AddToyForm = () => {
               onChange={(e) => setIsShown(e.target.checked)}
               className="form-checkbox h-5 w-5  text-black"
             />
-            <span className="ml-2 text-black">Shown</span>
+            <span className="ml-2 text-black">Featured</span>
           </label>
         </div>
         <div className="mb-4">

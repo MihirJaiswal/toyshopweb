@@ -1,9 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { delay, motion } from 'framer-motion'; 
+import { motion } from 'framer-motion'; 
 import { Separator } from '@/components/ui/separator';
 import Shimmer from './shimmer';
+import { FaSearch } from 'react-icons/fa'; 
 
 interface CategoryItem {
   name: string;
@@ -48,18 +49,27 @@ const Category = () => {
     <div className="container mx-auto" id='category'>
       <div className="py-12 text-center md:text-left">
         <h1 className="py-2 text-3xl text-black font-bold">Categories</h1>
-        <div className='flex items-center justify-center'>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search categories..."
-            className="p-2 border border-gray-300 rounded-lg mb-8 text-black mt-4 max-w-78 md:max-w-lg w-full mx-auto"
-          />
-        </div>
+        {!loading && (
+          <div className='flex items-center justify-center relative'>
+            <div className="relative mb-8 mt-4 max-w-78 md:max-w-lg w-full mx-auto">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Search categories..."
+                className="p-2 pr-10 border border-gray-300 rounded-lg text-black w-full"
+                style={{ paddingRight: '2.5rem' }} // Add extra space for the icon
+              />
+              <FaSearch 
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                style={{ fontSize: '1rem' }} // Set a fixed size for the icon
+              />
+            </div>
+          </div>
+        )}
       </div>
       <motion.div
-        className="flex flex-wrap justify-center pb-12"
+        className="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6 justify-center pb-12"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 1 }}
@@ -72,13 +82,13 @@ const Category = () => {
           filteredCategories.map(({ name, image, products }, index) => (
             <Link href={`/${name.toLowerCase()}`} key={index}>
               <motion.div
-                className="flex flex-col items-center rounded-lg p-4 m-4 bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-10"
+                className="flex flex-col items-center rounded-lg p-4  bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-white"
                 initial={{ opacity:0, y:50 }}
                 whileInView={{opacity:1, y:0 }} 
                 transition={{duration:1}}
                 key={index}
               >
-                <div className="w-44 h-40 mb-4">
+                <div className="md:w-44 md:h-40 w-20 h-20 mb-4">
                   <img
                     src={image}
                     alt={name}
@@ -86,7 +96,7 @@ const Category = () => {
                   />
                 </div>
                 <div className="flex flex-col items-center">
-                  <h1 className="text-xl font-semibold mb-2 text-[#B70E28]">{name}</h1>
+                  <h1 className="md:text-xl text-center font-semibold mb-2 text-[#B70E28]">{name}</h1>
                   <p className="text-sm text-gray-500">{products.length} Products</p>
                 </div>
               </motion.div>

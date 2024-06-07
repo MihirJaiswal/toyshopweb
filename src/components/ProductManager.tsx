@@ -116,7 +116,7 @@ const UpdateProduct = () => {
             checked={updateForm.isShown}
             onChange={() => setUpdateForm({ ...updateForm, isShown: !updateForm.isShown })}
           />
-          <span>Shown</span>
+          <span>Featured</span>
         </label>
         <input
           type="text"
