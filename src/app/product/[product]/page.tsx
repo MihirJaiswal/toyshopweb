@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppBtn from '@/components/whatsAppBtn';
+import { Separator } from '@/components/ui/separator';
 
 const ProductPage = () => {
   const pathname = usePathname();
@@ -96,7 +97,7 @@ const ProductPage = () => {
       </div>
         <div className="flex flex-col md:flex-row items-center justify-around mb-20">
           <div className="flex justify-center mb-8 md:mb-0">
-            <div className="flex flex-col items-center border border-solid bg-white border-gray-300 rounded-lg shadow-lg p-6">
+            <div className="flex flex-col items-center bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 p-6">
               <div className="w-64 h-64 mb-4">
                 <img
                   src={image}
@@ -106,15 +107,29 @@ const ProductPage = () => {
               </div>
               <div className="flex flex-col items-center">
                 <h1 className="text-2xl font-semibold mb-2 text-[#B70E28]">{name}</h1>
-                <p className="text-xl font-bold text-black">₹{price}</p>
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-6 max-w-2xl text-center">
-            <p className="text-xl md:text-2xl text-gray-900 p-4">{description}</p>
-            <button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-lg px-6 py-3 mt-4">
+          <div>
+          <div className="flex flex-col items-center gap-6 max-w-2xl md:text-left text-center">
+            <div className='h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 p-12'>
+            <div>
+            <p className="text-xl md:text-2xl text-gray-900 ">{description}</p>
+            </div>
+            <div className='my-4'>
+            <Separator/>
+            </div>
+            <div className='flex flex-col '>
+            <p className='text-gray-800 font-medium text-xl'>M.R.P.: ₹{price}</p>
+            <span className='font-light text-gray-700 text-sm'>Inclusive of all taxes</span>
+            </div>
+            </div>
+          </div>
+          <div className='flex items-center '>
+          <button className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-lg px-6 py-3 mt-4">
               Order Now!
             </button>
+          </div>
           </div>
         </div>
       </div>

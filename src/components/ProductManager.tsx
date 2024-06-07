@@ -21,25 +21,29 @@ const UpdateProduct = () => {
     setUpdateForm({ ...updateForm, [e.target.name]: e.target.value });
   };
 
-  const handleProductUpdate = async (e:any) => {
+  const handleProductUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      const updateData: { [key: string]: string | boolean } = {};
+      Object.keys(updateForm).forEach((key) => {
+        if (updateForm[key as keyof typeof updateForm] !== '' && key !== 'originalName') {
+          updateData[key] = updateForm[key as keyof typeof updateForm];
+        }
+      });
+      if (Object.keys(updateData).length === 0) {
+        toast.warn('No fields to update.');
+        return;
+      }
       const response = await fetch(`http://localhost:5000/api/products/${updateForm.originalName}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updateForm),
+        body: JSON.stringify(updateData),
       });
       if (response.ok) {
         toast.success('Product updated successfully');
         setUpdateForm({
-          originalName: '',
-          name: '',
-          image: '',
-          description: '',
-          price: '',
-          isPopular: false,
-          isShown: false,
-          categoryName: '',
+          ...updateForm,
+          ...Object.keys(updateData).reduce((acc, key) => ({ ...acc, [key]: '' }), {})
         });
       } else {
         console.error('Error updating product:', await response.json());
@@ -50,6 +54,7 @@ const UpdateProduct = () => {
       toast.error('Failed to update product. Please try again.');
     }
   };
+  
 
   return (
     <div className="container mx-auto p-4 max-w-md bg-white border border-solid border-black mt-8">
