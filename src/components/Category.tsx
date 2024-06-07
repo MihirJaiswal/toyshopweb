@@ -46,7 +46,7 @@ const Category = () => {
   );
 
   return (
-    <div className="container mx-auto" id='category'>
+    <div className="container mx-auto px-4 md:px-0" id='category'>
       <div className="py-12 text-center md:text-left">
         <h1 className="py-2 text-3xl text-black font-bold">Categories</h1>
         {!loading && (
@@ -82,13 +82,13 @@ const Category = () => {
           filteredCategories.map(({ name, image, products }, index) => (
             <Link href={`/${name.toLowerCase()}`} key={index}>
               <motion.div
-                className="flex flex-col items-center rounded-lg p-4  bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-white"
+                className="flex flex-col items-center rounded-lg p-4 bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-white"
                 initial={{ opacity:0, y:50 }}
                 whileInView={{opacity:1, y:0 }} 
                 transition={{duration:1}}
                 key={index}
               >
-                <div className="md:w-44 md:h-40 w-20 h-20 mb-4">
+                <div className="md:w-44 md:h-40 w-24 h-24 mb-4">
                   <img
                     src={image}
                     alt={name}

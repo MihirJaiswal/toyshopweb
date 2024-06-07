@@ -50,7 +50,7 @@ const Popular = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <div className="py-12 text-center md:text-left">
         <h1 className="py-2 text-3xl text-black font-bold">
           Popular

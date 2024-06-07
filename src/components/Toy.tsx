@@ -72,11 +72,11 @@ const Toy = () => {
           shownProducts.map((product, id) => (
             <Link href={`/product/${product.name}`} key={id}>
               <motion.div
-                className="flex flex-col items-center shadow-lg rounded-lg p-6 md:m-4 hover:scale-105 transition-transform duration-300 bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-white"
+                className="flex flex-col items-center shadow-lg rounded-lg md:p-6 p-2 md:m-4 hover:scale-105 transition-transform duration-300 bg-gray-100 cursor-pointer bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-white"
                 whileHover={{ scale: 1.05 }}
                 key={id}
               >
-                <div className="w-20 h-20  md:w-48 md:h-48 mb-4 bg-white md:p-2 rounded-lg">
+                <div className="w-24 h-24  md:w-48 md:h-48 mb-4 bg-white md:p-2 rounded-lg">
                   <img
                     src={product.image}
                     alt={product.name}
